@@ -1,9 +1,9 @@
-import { registerBlockType } from "@wordpress/blocks";
-import "./style.scss";
+import { registerBlockType } from "@wordpress/blocks"
+import "./style.scss"
 
-import edit from "./edit";
-import save from "./save";
-import metadata from "./block.json";
+import edit from "./edit"
+import save from "./save"
+import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
 	icon: {
@@ -32,10 +32,12 @@ registerBlockType(metadata.name, {
 			type: "boolean",
 			default: "true",
 		},
-		content: {
-			type: "string",
-			source: "html",
-			selector: "p .site-credit",
+		siteCredit: {
+			content: {
+				type: "string",
+				source: "html",
+				selector: "p .site-credit",
+			},
 		},
 	},
-});
+})

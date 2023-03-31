@@ -1,9 +1,9 @@
-import { __ } from "@wordpress/i18n";
-import { useBlockProps } from "@wordpress/block-editor";
-import "./editor.scss";
-import { InspectorControls, RichText } from "@wordpress/block-editor";
-import { useState } from "@wordpress/element";
-import { Fragment } from "react";
+import { __ } from "@wordpress/i18n"
+import { useBlockProps } from "@wordpress/block-editor"
+import "./editor.scss"
+import { InspectorControls, RichText } from "@wordpress/block-editor"
+import { useState } from "@wordpress/element"
+import { Fragment } from "react"
 import {
 	Button,
 	PanelBody,
@@ -13,12 +13,12 @@ import {
 	Toolbar,
 	ButtonGroup,
 	ColorPicker,
-} from "@wordpress/components";
-const { useSelect } = wp.data;
+} from "@wordpress/components"
+const { useSelect } = wp.data
 
 export default function edit({ attributes, setAttributes }) {
-	const blockProps = useBlockProps();
-	const { toggleYear, toggleSite, toggleSiteCredit, siteCredit } = attributes;
+	const blockProps = useBlockProps()
+	const { toggleYear, toggleSite, toggleSiteCredit, siteCredit } = attributes
 
 	return (
 		<Fragment>
@@ -63,12 +63,12 @@ export default function edit({ attributes, setAttributes }) {
 					<RichText
 						tagName="p"
 						className="site-credit"
-						value={attributes.content}
-						onChange={(content) => setAttributes({ content })}
+						value={attributes.siteCredit}
+						onChange={(siteCredit) => setAttributes({ siteCredit })}
 						placeholder="Click here to edit."
 					/>
 				)}
 			</div>
 		</Fragment>
-	);
+	)
 }
