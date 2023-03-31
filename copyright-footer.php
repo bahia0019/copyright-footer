@@ -28,10 +28,11 @@ add_action( 'init', 'create_block_copyright_footer_block_init' );
 
 
 function copyright_footer_replace_year_filter( $block_content, $block ) {
-	if ( $block['blockName'] === 'copyright-footer' ) {
+	if ( $block['blockName'] === ' create-block/copyright-footer' ) {
 		return $content;
 	} 
 	return $block_content;
+    // print_r( $block );
 }
 
 add_filter( 'render_block', 'copyright_footer_replace_year_filter', 10, 2 );
