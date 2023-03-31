@@ -21,6 +21,9 @@ export default function edit(props) {
 	const { attributes, setAttributes } = props
 	const { toggleYear, toggleSite, toggleSiteCredit, siteCredit } = attributes
 
+	const year = new Date().getFullYear()
+	const siteName = wp.data.select("core").getSite().title
+
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -56,15 +59,14 @@ export default function edit(props) {
 
 			<div {...blockProps}>
 				<p className="copyright">
-					© {attributes.toggleYear && "YEAR"}{" "}
-					{attributes.toggleSite && "SITENAME"}
+					© {toggleYear && year} {toggleSite && siteName}
 				</p>
 
 				{toggleSiteCredit && (
 					<RichText
 						tagName="p"
 						className="site-credit"
-						value={attributes.siteCredit}
+						value={siteCredit}
 						onChange={(siteCredit) => setAttributes({ siteCredit })}
 						placeholder="Click here to edit."
 					/>

@@ -28,11 +28,16 @@ add_action( 'init', 'create_block_copyright_footer_block_init' );
 
 
 function copyright_footer_replace_year_filter( $block_content, $block ) {
-	if ( $block['blockName'] === ' create-block/copyright-footer' ) {
-		return $content;
-	} 
-	return $block_content;
-    // print_r( $block );
-}
+    $year = date( 'Y' );
+    $site_name = get_bloginfo( 'name' );
+    
+	if ( $block['blockName'] !== 'create-block/copyright-footer') {
+        return $block_content;
+    }
 
-// add_filter( 'render_block', 'copyright_footer_replace_year_filter', 10, 2 );
+    $block_content = str_replace( "%SITENAME%", esc_html( $site_name ), $block_content );
+    $block_content = str_replace( "%YEAR%", $year, $block_content );
+    return $block_content;
+
+}
+add_filter( 'render_block', 'copyright_footer_replace_year_filter', 10, 2 );
