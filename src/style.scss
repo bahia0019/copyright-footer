@@ -9,16 +9,11 @@
 	background-color: #21759b;
 	color: #fff;
 	padding: 2px;
-}
-
-.copyright-footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-}
 
-@media screen and (min-width: 768px) {
-	.copyright-footer {
+	@media screen and (min-width: 768px) {
 		flex-direction: row;
 		justify-content: space-between;
 	}
