@@ -35,4 +35,4 @@ function copyright_footer_replace_year_filter( $block_content, $block ) {
     // print_r( $block );
 }
 
-add_filter( 'render_block', 'copyright_footer_replace_year_filter', 10, 2 );
+// add_filter( 'render_block', 'copyright_footer_replace_year_filter', 10, 2 );

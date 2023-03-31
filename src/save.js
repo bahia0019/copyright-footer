@@ -1,7 +1,9 @@
+import { __ } from "@wordpress/i18n"
 import { useBlockProps, RichText } from "@wordpress/block-editor"
 
-export default function save(attributes) {
+export default function save(props) {
 	const blockProps = useBlockProps.save()
+	const { attributes } = props
 	const { toggleYear, toggleSite, toggleSiteCredit, siteCredit } = attributes
 
 	return (
@@ -10,13 +12,7 @@ export default function save(attributes) {
 				© {toggleYear && "YEAR"} {toggleSite && "SITENAME"}
 			</p>
 
-			{toggleSiteCredit && (
-				<RichText.Content
-					tagName="p"
-					className="site-credit"
-					value={siteCredit}
-				/>
-			)}
+			{toggleSiteCredit && <RichText.Content tagName="p" value={siteCredit} />}
 		</div>
 	)
 }

@@ -16,8 +16,9 @@ import {
 } from "@wordpress/components"
 const { useSelect } = wp.data
 
-export default function edit({ attributes, setAttributes }) {
+export default function edit(props) {
 	const blockProps = useBlockProps()
+	const { attributes, setAttributes } = props
 	const { toggleYear, toggleSite, toggleSiteCredit, siteCredit } = attributes
 
 	return (
