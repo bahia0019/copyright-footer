@@ -31,7 +31,7 @@ function copyright_footer_replace_year_filter( $block_content, $block ) {
     $year = date( 'Y' );
     $site_name = get_bloginfo( 'name' );
     
-	if ( $block['blockName'] !== 'create-block//copyright-footer') {
+	if ( $block['blockName'] !== 'fys/copyright-footer') {
         return $block_content;
     }
 
