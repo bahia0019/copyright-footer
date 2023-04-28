@@ -1,9 +1,9 @@
-import { __ } from "@wordpress/i18n"
-import { useBlockProps } from "@wordpress/block-editor"
-import "./editor.scss"
-import { InspectorControls, RichText } from "@wordpress/block-editor"
-import { useState } from "@wordpress/element"
-import { Fragment } from "react"
+import { __ } from "@wordpress/i18n";
+import { useBlockProps } from "@wordpress/block-editor";
+import "./editor.scss";
+import { InspectorControls, RichText } from "@wordpress/block-editor";
+import { useState } from "@wordpress/element";
+import { Fragment } from "react";
 import {
 	Button,
 	PanelBody,
@@ -13,16 +13,23 @@ import {
 	Toolbar,
 	ButtonGroup,
 	ColorPicker,
-} from "@wordpress/components"
-const { useSelect } = wp.data
+} from "@wordpress/components";
+const { useSelect } = wp.data;
 
 export default function edit(props) {
-	const blockProps = useBlockProps()
-	const { attributes, setAttributes } = props
-	const { toggleYear, toggleSite, toggleSiteCredit, siteCredit } = attributes
+	const blockProps = { ...useBlockProps() };
+	const { attributes, setAttributes } = props;
+	const {
+		toggleYear,
+		toggleSite,
+		toggleSiteCredit,
+		toggleLegalLinks,
+		siteCredit,
+		legalLinks,
+	} = attributes;
 
-	const year = new Date().getFullYear()
-	const siteName = wp.data.select("core").getSite().title
+	const year = new Date().getFullYear();
+	const siteName = wp.data.select("core").getSite().title;
 
 	return (
 		<Fragment>
@@ -43,6 +50,19 @@ export default function edit(props) {
 					/>
 				</PanelBody>
 
+				<PanelBody title={"Legal Links"}>
+					<ToggleControl
+						label="Display Legal Links"
+						help={
+							"Displays customizable text for Privacy Policy or Terms Of Use Links."
+						}
+						checked={!!toggleLegalLinks}
+						onChange={() =>
+							setAttributes({ toggleLegalLinks: !toggleLegalLinks })
+						}
+					/>
+				</PanelBody>
+
 				<PanelBody title={"Site Credit"}>
 					<ToggleControl
 						label="Display Site Credit"
@@ -60,6 +80,16 @@ export default function edit(props) {
 			<div {...blockProps}>
 				<p className="copyright">
 					© {toggleYear && year} {toggleSite && siteName}
+					{toggleLegalLinks && " | "}
+					{toggleLegalLinks && (
+						<RichText
+							tagName="span"
+							className="legal-link"
+							value={legalLinks}
+							onChange={(legalLinks) => setAttributes({ legalLinks })}
+							placeholder="Click here to edit. (Optional)"
+						/>
+					)}
 				</p>
 
 				{toggleSiteCredit && (
@@ -73,5 +103,5 @@ export default function edit(props) {
 				)}
 			</div>
 		</Fragment>
-	)
+	);
 }
