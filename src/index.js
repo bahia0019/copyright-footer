@@ -18,11 +18,13 @@ registerBlockType(metadata.name, {
 	supports: {
 		align: ["full"],
 		alignWide: true,
-		color: true,
+		color: {
+			link: true,
+		},
 		spacing: {
 			margin: true,
 			padding: true,
-			blockGap: true,
+			blockGap: null,
 		},
 	},
 	attributes: {
@@ -53,6 +55,21 @@ registerBlockType(metadata.name, {
 				type: "string",
 				source: "html",
 				selector: "p .site-credit",
+			},
+		},
+		style: {
+			type: "object",
+			default: {
+				color: {
+					text: "#fff",
+				},
+				elements: {
+					link: {
+						color: {
+							text: "lightskyblue",
+						},
+					},
+				},
 			},
 		},
 	},

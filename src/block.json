@@ -7,7 +7,10 @@
 	"category": "widgets",
 	"description": "Example block scaffolded with Create Block tool.",
 	"supports": {
-		"html": false
+		"html": false,
+		"spacing": {
+			"blockGap": null
+		}
 	},
 	"textdomain": "copyright-footer",
 	"editorScript": "file:./index.js",
