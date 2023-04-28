@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Copyright Footer
- * Description:       Example block scaffolded with Create Block tool.
+ * Description:       Adds a footer with a Copyright date that updates every year automatically, with some additional options.
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            William Bay
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       copyright-footer
