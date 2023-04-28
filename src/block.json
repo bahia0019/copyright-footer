@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"title": "Copyright Footer",
 	"category": "widgets",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Adds a footer with a Copyright date that updates every year automatically, with some additional options.",
 	"supports": {
 		"html": false,
 		"spacing": {
