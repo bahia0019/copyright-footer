@@ -16,8 +16,7 @@ export default function save(props) {
 	return (
 		<div {...blockProps}>
 			<p className="copyright">
-				© {toggleYear && "%YEAR%"}
-				{toggleSite && "%SITENAME%"}
+				© {toggleYear && "%YEAR%"} {toggleSite && "%SITENAME%"}
 				{toggleLegalLinks && " | "}
 				{toggleLegalLinks && (
 					<RichText.Content tagName="span" value={legalLinks} />

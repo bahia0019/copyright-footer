@@ -40,7 +40,6 @@ registerBlockType(metadata.name, {
 		},
 		toggleLegalLinks: {
 			type: "boolean",
-			default: "false",
 		},
 		siteCredit: {
 			content: {
