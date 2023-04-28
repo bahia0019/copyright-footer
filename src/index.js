@@ -1,9 +1,9 @@
-import { registerBlockType } from "@wordpress/blocks"
-import "./style.scss"
+import { registerBlockType } from "@wordpress/blocks";
+import "./style.scss";
 
-import edit from "./edit"
-import save from "./save"
-import metadata from "./block.json"
+import edit from "./edit";
+import save from "./save";
+import metadata from "./block.json";
 
 registerBlockType(metadata.name, {
 	icon: {
@@ -18,6 +18,12 @@ registerBlockType(metadata.name, {
 	supports: {
 		align: ["full"],
 		alignWide: true,
+		color: true,
+		spacing: {
+			margin: true,
+			padding: true,
+			blockGap: true,
+		},
 	},
 	attributes: {
 		toggleYear: {
@@ -32,6 +38,9 @@ registerBlockType(metadata.name, {
 			type: "boolean",
 			default: "true",
 		},
+		toggleLegalLinks: {
+			type: "boolean",
+		},
 		siteCredit: {
 			content: {
 				type: "string",
@@ -39,5 +48,12 @@ registerBlockType(metadata.name, {
 				selector: "p .site-credit",
 			},
 		},
+		legalLinks: {
+			content: {
+				type: "string",
+				source: "html",
+				selector: "p .site-credit",
+			},
+		},
 	},
-})
+});

@@ -6,9 +6,11 @@
  */
 
 .wp-block-create-block-copyright-footer {
-	background-color: #21759b;
+	background-color: #333;
 	color: #fff;
-	padding: 2px;
+	padding: 10px;
+	font-size: 0.8em;
+	font-weight: lighter;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
