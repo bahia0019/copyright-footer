@@ -20,10 +20,10 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_copyright_footer_block_init() {
+function copyright_footer_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'create_block_copyright_footer_block_init' );
+add_action( 'init', 'copyright_footer_block_init' );
 
 
 
@@ -31,7 +31,7 @@ function copyright_footer_replace_year_filter( $block_content, $block ) {
     $year = date( 'Y' );
     $site_name = get_bloginfo( 'name' );
     
-	if ( $block['blockName'] !== 'create-block/copyright-footer') {
+	if ( $block['blockName'] !== 'copyright-footer') {
         return $block_content;
     }
 
