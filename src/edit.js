@@ -68,7 +68,7 @@ export default function edit(props) {
 						className="site-credit"
 						value={siteCredit}
 						onChange={(siteCredit) => setAttributes({ siteCredit })}
-						placeholder="Click here to edit."
+						placeholder="Click here to edit. (Optional)"
 					/>
 				)}
 			</div>
