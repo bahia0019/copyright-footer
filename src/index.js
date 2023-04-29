@@ -1,9 +1,9 @@
-import { registerBlockType } from "@wordpress/blocks";
-import "./style.scss";
+import { registerBlockType } from "@wordpress/blocks"
+import "./style.scss"
 
-import edit from "./edit";
-import save from "./save";
-import metadata from "./block.json";
+import edit from "./edit"
+import save from "./save"
+import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
 	icon: {
@@ -62,6 +62,7 @@ registerBlockType(metadata.name, {
 			default: {
 				color: {
 					text: "#fff",
+					background: "#333",
 				},
 				elements: {
 					link: {
@@ -73,4 +74,4 @@ registerBlockType(metadata.name, {
 			},
 		},
 	},
-});
+})
