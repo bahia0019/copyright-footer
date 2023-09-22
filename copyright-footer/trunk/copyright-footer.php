@@ -27,35 +27,16 @@ add_action( 'init', 'copyright_footer_block_init' );
 
 
 
-
-
 function copyright_footer_replace_year_filter( $block_content, $block ) {
-    if ( $block['blockName'] !== 'fys/copyright-footer') {
+    $year = date( 'Y' );
+    $site_name = get_bloginfo( 'name' );
+    
+	if ( $block['blockName'] !== 'fys/copyright-footer') {
         return $block_content;
     }
 
-    $currentYear = date( 'Y' );
-    $site_name = get_bloginfo( 'name' );
-
-    // Loop through users, and get the earliest date.
-    $userDates = [];
-    $users = get_users();
-    foreach( $users as $user ) {
-        $udata = get_userdata( $user->ID );
-        $userDates[] = $udata->user_registered;
-    }
-    $startYear = date( "Y", strtotime( min($userDates) ) );
-
-    // Create a date range if $startDate is less than currentDate.
-    $dateRange = '';
-    if ( $startYear < $currentYear ) {
-        $dateRange = $startYear . ' - ' . $currentYear;
-    } else {
-        $dateRange = $currentYear;
-    }
-
     $block_content = str_replace( "%SITENAME%", esc_html( $site_name ), $block_content );
-    $block_content = str_replace( "%YEAR%", $dateRange, $block_content );
+    $block_content = str_replace( "%YEAR%", $year, $block_content );
     return $block_content;
 
 }

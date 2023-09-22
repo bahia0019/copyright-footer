@@ -1,9 +1,9 @@
-import { __ } from "@wordpress/i18n";
-import { useBlockProps } from "@wordpress/block-editor";
-import "./editor.scss";
-import { InspectorControls, RichText } from "@wordpress/block-editor";
-import { useState } from "@wordpress/element";
-import { Fragment } from "react";
+import { __ } from "@wordpress/i18n"
+import { useBlockProps } from "@wordpress/block-editor"
+import "./editor.scss"
+import { InspectorControls, RichText } from "@wordpress/block-editor"
+import { useState } from "@wordpress/element"
+import { Fragment } from "react"
 import {
 	Button,
 	PanelBody,
@@ -13,12 +13,12 @@ import {
 	Toolbar,
 	ButtonGroup,
 	ColorPicker,
-} from "@wordpress/components";
-const { useSelect } = wp.data;
+} from "@wordpress/components"
+const { useSelect } = wp.data
 
 export default function edit(props) {
-	const blockProps = { ...useBlockProps() };
-	const { attributes, setAttributes } = props;
+	const blockProps = { ...useBlockProps() }
+	const { attributes, setAttributes } = props
 	const {
 		toggleYear,
 		toggleSite,
@@ -26,10 +26,28 @@ export default function edit(props) {
 		toggleLegalLinks,
 		siteCredit,
 		legalLinks,
-	} = attributes;
+	} = attributes
 
-	const year = new Date().getFullYear();
-	const siteName = wp.data.select("core").getSite().title;
+	const year = new Date().getFullYear()
+	const siteName = wp.data.select("core").getSite().title
+	// Get list of users and make a date range
+	const users = wp.data.select("core").getUsers()
+	let userStartDates = []
+	let startYear = ""
+	let dateRange = ""
+
+	if (null !== users) {
+		users.map((user) => {
+			userStartDates.push(new Date(user.registered_date).getFullYear())
+		})
+		startYear = Math.min(parseInt(userStartDates))
+
+		if (startYear < year) {
+			dateRange = `${startYear} - ${year}`
+		} else {
+			dateRange = year
+		}
+	}
 
 	return (
 		<Fragment>
@@ -79,7 +97,7 @@ export default function edit(props) {
 
 			<div {...blockProps}>
 				<p className="copyright">
-					© {toggleYear && year} {toggleSite && siteName}
+					© {toggleYear && dateRange} {toggleSite && siteName}
 					{toggleLegalLinks && " | "}
 					{toggleLegalLinks && (
 						<RichText
@@ -103,5 +121,5 @@ export default function edit(props) {
 				)}
 			</div>
 		</Fragment>
-	);
+	)
 }
