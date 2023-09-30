@@ -34,5 +34,8 @@ No, this is meant to be used as a Template Part in themes that support full site
 
 == Changelog ==
 
+= 1.0 =
+* Changed the Copyright date to a range from oldest known year of website to current year.
+
 = 0.1.0 =
 * Release

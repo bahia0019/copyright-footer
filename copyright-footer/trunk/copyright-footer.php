@@ -4,7 +4,7 @@
  * Description:       Adds a footer with a Copyright date that updates every year automatically, with some additional options.
  * Requires at least: 6.1
  * Requires PHP:      7.0
- * Version:           0.1.0
+ * Version:           1.0.0
  * Author:            William Bay
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -27,16 +27,35 @@ add_action( 'init', 'copyright_footer_block_init' );
 
 
 
+
+
 function copyright_footer_replace_year_filter( $block_content, $block ) {
-    $year = date( 'Y' );
-    $site_name = get_bloginfo( 'name' );
-    
-	if ( $block['blockName'] !== 'fys/copyright-footer') {
+    if ( $block['blockName'] !== 'fys/copyright-footer') {
         return $block_content;
     }
 
+    $currentYear = date( 'Y' );
+    $site_name = get_bloginfo( 'name' );
+
+    // Loop through users, and get the earliest date.
+    $userDates = [];
+    $users = get_users();
+    foreach( $users as $user ) {
+        $udata = get_userdata( $user->ID );
+        $userDates[] = $udata->user_registered;
+    }
+    $startYear = date( "Y", strtotime( min($userDates) ) );
+
+    // Create a date range if $startDate is less than currentDate.
+    $dateRange = '';
+    if ( $startYear < $currentYear ) {
+        $dateRange = $startYear . ' - ' . $currentYear;
+    } else {
+        $dateRange = $currentYear;
+    }
+
     $block_content = str_replace( "%SITENAME%", esc_html( $site_name ), $block_content );
-    $block_content = str_replace( "%YEAR%", $year, $block_content );
+    $block_content = str_replace( "%YEAR%", $dateRange, $block_content );
     return $block_content;
 
 }
